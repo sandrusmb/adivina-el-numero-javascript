@@ -15,11 +15,11 @@ function writeMessage() {
   const inputValue = document.querySelector("js-answer").value;
   if (inputValue === myRandomNumber) {
     clue.innerHTML("¡Enhorabuena campeona!");
-  } else if(inputValue > myRandomNumber){
+  } else if (inputValue > myRandomNumber) {
     clue.innerHTML("Muy alto");
-  } else(inputValue < myRandomNumber){
+  } else if (inputValue < myRandomNumber) {
     clue.innerHTML("Muy bajo");
-  } 
+  }
 }
 
 function buttonHandler() {
