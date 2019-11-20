@@ -23,7 +23,7 @@ function writeMessage() {
 }
 
 function buttonHandler() {
-  //generar un número aleatorio (HECHO)
+  //generar un número aleatorio
   getRandomNumber();
   //pintar pistas
   writeMessage();
