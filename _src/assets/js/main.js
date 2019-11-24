@@ -1,35 +1,39 @@
 "use strict";
 
-// Botón de prueba con el que empieza todo
-const button = document.querySelector(".js-btn");
-const clue = document.querySelector(".js-clue");
-const message = document.querySelector(".js-tries");
-
-function getRandomNumber() {
-  const myRandomNumber = Math.floor(Math.random() * 100);
-  console.log("Este es mi número aleatorio: " + myRandomNumber);
+function getRandomNumber(max) {
+  return Math.ceil(Math.random() * max);
 }
 
-function writeMessage() {
-  //Si el valor del input es igual al número aleatorio saldrá un mensaje en clue
-  const inputValue = document.querySelector("js-answer").value;
-  if (inputValue === myRandomNumber) {
-    clue.innerHTML("¡Enhorabuena campeona!");
-  } else if (inputValue > myRandomNumber) {
-    clue.innerHTML("Muy alto");
-  } else if (inputValue < myRandomNumber) {
-    clue.innerHTML("Muy bajo");
+const magicNumber = getRandomNumber(100);
+const input = document.querySelector("input");
+const clue = document.querySelector(".js-clue");
+
+function compareNumbers() {
+  const inputValue = parseInt(input.value);
+  if (inputValue < 1 || inputValue > 100) {
+    clue.innerHTML = "¡Error! El número tiene que estar entre 1 y 100";
+  } else if (inputValue === magicNumber) {
+    clue.innerHTML = "¡Enhorabuena has acertado!";
+  } else if (inputValue > magicNumber) {
+    clue.innerHTML = "Demasiado alto";
+  } else if (inputValue < magicNumber) {
+    clue.innerHTML = "Demasiado bajo";
   }
 }
 
-function buttonHandler() {
-  //generar un número aleatorio
-  getRandomNumber();
-  //pintar pistas
-  writeMessage();
-  //pintar número de intentos
-  writeNumberIntens();
+const tries = document.querySelector(".js-tries");
+let numberTries = 0;
+
+function countTries() {
+  tries.innerHTML = `Número de intentos: ${numberTries}`;
 }
 
-// listener sobre el elemento, con tipo de evento y handler
-button.addEventListener("click", buttonHandler);
+const button = document.querySelector("button");
+
+function clickHandler() {
+  compareNumbers();
+  countTries();
+  numberTries = numberTries + 1;
+}
+
+button.addEventListener("click", clickHandler);
