@@ -23,8 +23,9 @@ function compareNumbers() {
 
 const tries = document.querySelector(".js-tries");
 let numberTries = 0;
+printTries();
 
-function countTries() {
+function printTries() {
   tries.innerHTML = `Número de intentos: ${numberTries}`;
 }
 
@@ -32,8 +33,8 @@ const button = document.querySelector("button");
 
 function clickHandler() {
   compareNumbers();
-  countTries();
   numberTries = numberTries + 1;
+  printTries();
 }
 
 button.addEventListener("click", clickHandler);
